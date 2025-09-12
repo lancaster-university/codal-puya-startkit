@@ -22,17 +22,8 @@ if( DEFINED __merged.config.SOFTDEVICE_PRESENT AND NOT "${__merged.config.DEVICE
     message( FATAL_ERROR "Do not define SOFTDEVICE_PRESENT in your configuration, use DEVICE_BLE instead." )
 endif()
 
-# Determine if we need SOFTDEVICE support by checking if BLE is enabled.
-if( "${__merged.config.DEVICE_BLE}" STREQUAL "1" )
-    message( "Building WITH softdevice support" )
-    file( APPEND "${EXTRA_INCLUDES_PATH}" " #define SOFTDEVICE_PRESENT    1" )
-    set(CMAKE_LINKER_FLAGS "${CMAKE_LINKER_FLAGS} -T\"${CMAKE_CURRENT_LIST_DIR}/ld/nrf52833-softdevice.ld\"" PARENT_SCOPE)
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -T\"${CMAKE_CURRENT_LIST_DIR}/ld/nrf52833-softdevice.ld\"" PARENT_SCOPE)
-else()
-    message( "Building WITHOUT softdevice support" )
-    set(CMAKE_LINKER_FLAGS "${CMAKE_LINKER_FLAGS} -T\"${CMAKE_CURRENT_LIST_DIR}/ld/nrf52833.ld\"" PARENT_SCOPE)
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -T\"${CMAKE_CURRENT_LIST_DIR}/ld/nrf52833.ld\"" PARENT_SCOPE)
-endif()
+set(CMAKE_LINKER_FLAGS "${CMAKE_LINKER_FLAGS} -T\"${CMAKE_CURRENT_LIST_DIR}/ld/py32f002bx5.ld\"" PARENT_SCOPE)
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -T\"${CMAKE_CURRENT_LIST_DIR}/ld/py32f002bx5.ld\"" PARENT_SCOPE)
 
 # find sources and headers
 RECURSIVE_FIND_DIR(INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/inc" "*.h")
