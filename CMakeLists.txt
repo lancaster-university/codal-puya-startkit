@@ -1,4 +1,4 @@
-project(codal-microbit-v2)
+project(codal-puya-startkit)
 
 # Actually merge our multiple configs into a single set of values so we can query them easily.
 # Note: This will be removed when we move to a library-ified version of the build system
@@ -54,16 +54,15 @@ set(CMAKE_SYSTEM_PROCESSOR "armv7-m" PARENT_SCOPE)
 include_directories(${INCLUDE_DIRS})
 
 # create our target
-add_library(codal-microbit-v2 ${SOURCE_FILES})
+add_library(codal-puya-startkit ${SOURCE_FILES})
 
 target_link_libraries(
-    codal-microbit-v2
-    codal-nrf52
+    codal-puya-startkit
+    codal-py32
     codal-core
-    codal-microbit-nrf5sdk
     ${LIB_OBJECT_FILES}
     ${LIB_ARCHIVE_FILES}
 )
 
 # expose it to parent cmake.
-target_include_directories(codal-microbit-v2 PUBLIC ${INCLUDE_DIRS})
+target_include_directories(codal-puya-startkit PUBLIC ${INCLUDE_DIRS})
